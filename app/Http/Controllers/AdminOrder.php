@@ -18,6 +18,7 @@ class AdminOrder extends Controller
 {
     public function order()
     {
+        
         $pendingOrders = Order::where('status', "pending")->get();
         $finishedOrders = Order::where('status', '!=', "pending")->get();
         return view('orders.show', compact("pendingOrders", "finishedOrders"));
@@ -43,3 +44,4 @@ class AdminOrder extends Controller
         return redirect()->route('orders-show')->with('order-status-update-success');
     }
 }
+?>

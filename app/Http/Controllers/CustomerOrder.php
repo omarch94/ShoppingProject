@@ -93,7 +93,7 @@ class CustomerOrder extends Controller
 
         $orderedItems = OrderItem::where('order_id', $order->id)->get();
 
-        return view('pages.dashboards.client.orders.update', compact('orderedItems'));
+        return view('orders.update', compact('orderedItems'));
     }
     public function cancelOrderItem($orderItemId)
     {
@@ -106,7 +106,7 @@ class CustomerOrder extends Controller
 
         $orderItem->delete();
 
-        return redirect()->route('dashboard-client-orders-show')->with('order-cancell-item-sucess');
+        return redirect()->route('orders-show')->with('order-cancell-item-sucess');
     }
 
     public function cancelOrder($orderId)
@@ -114,13 +114,13 @@ class CustomerOrder extends Controller
         $order = Order::findOrFail($orderId);
 
         if ($order->user_id !== Auth::user()->id) {
-            return redirect()->route('dashboard-client-orders-show');
+            return redirect()->route('orders-show');
         }
 
         $order->status = "cancelled";
         $order->save();
 
-        return redirect()->route('dashboard-client-orders-show')->with('order-cancell-sucess');
+        return redirect()->route('orders-show')->with('order-cancell-sucess');
     }
 
 

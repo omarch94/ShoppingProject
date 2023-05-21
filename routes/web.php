@@ -13,6 +13,8 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\CustomerOrder;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\RegisterController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,10 +32,19 @@ Route::get('/clear-cache', function () {
     return redirect('/');
 
 });
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
+Route::get('/register', [RegisterController::class, 'registerCustomer'])->name('register');
+
+// Route::get('/', function () {
+//     return view('welcome');
+// })->middleware(['guest']);
+// Route::get('/welcome', function () {
+//     return view('welcome');
+// });
 
 Route::get('/', function () {
-    return view('welcome');
-})->middleware(['guest']);
+    return view('pages.home');
+})->name('home');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
@@ -140,10 +151,14 @@ Route::controller(GuestController::class)->group(function () {
     Route::delete('/delete-from-cart/{id}', 'deleteProductFromCart')->name('delete-product-cart');
 
 
-
-
 });
 });
+
+Route::get('/', [ProductController::class, 'listProduct']);  
+Route::get('cart', [ProductController::class, 'cart'])->name('cart');
+Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
+Route::patch('update-cart', [ProductController::class, 'updateCart'])->name('update.cart');
+Route::delete('remove-from-cart', [ProductController::class, 'remove'])->name('remove.from.cart');
 
 // Orders
 Route::group(['prefix' => 'CustOrder'], function() {
@@ -155,3 +170,4 @@ Route::delete('client/order/{id}','cancelOrder')->name('client-order-cancel');
 Route::delete('client/orderItem/{id}', 'cancelOrderItem')->name('client-orderItem-cancel');
 });
 });
+
