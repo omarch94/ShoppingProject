@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminOrder;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\RoleController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\CustomerOrder;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -154,11 +156,11 @@ Route::controller(GuestController::class)->group(function () {
 });
 });
 
-Route::get('/', [ProductController::class, 'listProduct']);  
-Route::get('cart', [ProductController::class, 'cart'])->name('cart');
-Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
-Route::patch('update-cart', [ProductController::class, 'updateCart'])->name('update.cart');
-Route::delete('remove-from-cart', [ProductController::class, 'remove'])->name('remove.from.cart');
+Route::get('/', [HomeController::class, 'listProduct']);  
+Route::get('add-to-cart/{id}', [HomeController::class, 'addToCart'])->name('add.to.cart');
+Route::get('cart', [HomeController::class, 'cart'])->name('cart');
+Route::patch('update-cart', [HomeController::class, 'updateCart'])->name('update.cart');
+Route::delete('remove-from-cart', [HomeController::class, 'remove'])->name('remove.from.cart');
 
 // Orders
 Route::group(['prefix' => 'CustOrder'], function() {
@@ -170,4 +172,20 @@ Route::delete('client/order/{id}','cancelOrder')->name('client-order-cancel');
 Route::delete('client/orderItem/{id}', 'cancelOrderItem')->name('client-orderItem-cancel');
 });
 });
+
+Route::get('/order', [CustomerOrder::class, 'order'])->name('sendorder');
+// Route::post('/order','sendorder')->name('makeOrder');
+// Route::post('/checkout', [GuestController::class, 'checkout'])->name('checkout');
+
+
+
+// Order Admin
+Route::group(['prefix' => 'AdminOrder'], function() {
+    Route::controller(AdminOrder::class)->group(function () {
+    Route::get('/admin/orders', 'order')->name('orders');
+    Route::get('admin/order/update/{id}', 'UpdateOrderController@update')->name('update-orders');
+    Route::put('admin/order/edit/{id}','editOrderStatus')->name('manage-status');
+    });
+    });
+
 

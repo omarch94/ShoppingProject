@@ -22,7 +22,7 @@ class CustomerOrder extends Controller
     {
         $myPendingOrders = Order::where("user_id", Auth::id())->where('status', 'pending')->get();
         $myFinishedOrders = Order::where("user_id", Auth::id())->where('status', '!=', 'pending')->get();
-        return view('pages.dashboards.client.orders.show', compact('myPendingOrders', 'myFinishedOrders'));
+        return view('orders.show', compact('myPendingOrders', 'myFinishedOrders'));
     }
 
     public function sendOrder(Request $request)
@@ -88,7 +88,7 @@ class CustomerOrder extends Controller
         $order = Order::findOrFail($orderId);
 
         if ($order->user_id !== Auth::user()->id) {
-            return redirect()->route('dashboard-client-orders-show');
+            return redirect()->route('orders-show');
         }
 
         $orderedItems = OrderItem::where('order_id', $order->id)->get();
@@ -101,7 +101,7 @@ class CustomerOrder extends Controller
         $order = Order::findOrFail($orderItem->id);
 
         if ($order->user_id !== Auth::user()->id) {
-            return redirect()->route('dashboard-client-orders-show');
+            return redirect()->route('orders-show');
         }
 
         $orderItem->delete();

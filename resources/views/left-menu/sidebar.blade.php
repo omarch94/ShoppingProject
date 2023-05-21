@@ -105,28 +105,22 @@
   <ul class="nav nav-treeview">
       @if(Auth::user()->hasAccessTo('view_orders'))
           <li class="nav-item">
-              {{-- <a href="{{ route('orders') }}" class="nav-link"> --}}
+              <a href="{{ route('orders') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Orders</p>
               </a>
           </li>
-      @endif
+      {{-- @endif
       @if(Auth::user()->hasAccessTo('update_orders'))
           <li class="nav-item">
-              {{-- <a href="{{ route('update-orders') }}" class="nav-link"> --}}
+              {{-- <a href="{{ route('update-orders/{id}') }}" class="nav-link"> --}}
                   <i class="far fa-circle nav-icon"></i>
                   <p>Update Orders</p>
               </a>
           </li>
       @endif
-      @if(Auth::user()->hasAccessTo('manage_status'))
-          <li class="nav-item">
-              {{-- <a href="{{ route('manage-status') }}" class="nav-link"> --}}
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Manage Status</p>
-              </a>
-          </li>
-      @endif
+     
+      
   </ul>
 </li>
 

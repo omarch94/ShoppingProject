@@ -22,19 +22,19 @@ class SettingTableSeeder extends Seeder
             ],
             [
                 'setting_key' => 'shop_country',
-                'setting_value' => 'Kenya',
+                'setting_value' => 'Morocco',
             ],
             [
                 'setting_key' => 'shop_address',
-                'setting_value' => '100000 Riverside',
+                'setting_value' => ' WILAYA',
             ],
             [
                 'setting_key' => 'shop_city',
-                'setting_value' => 'Nairobi',
+                'setting_value' => 'TETOUAN',
             ],
             [
                 'setting_key' => 'shop_zip',
-                'setting_value' => '00100',
+                'setting_value' => '93000',
             ],
             [
                 'setting_key' => 'shop_email',

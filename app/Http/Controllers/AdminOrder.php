@@ -21,14 +21,14 @@ class AdminOrder extends Controller
         
         $pendingOrders = Order::where('status', "pending")->get();
         $finishedOrders = Order::where('status', '!=', "pending")->get();
-        return view('orders.show', compact("pendingOrders", "finishedOrders"));
+        return view('ordersadmin.show', compact("pendingOrders", "finishedOrders"));
     }
     public function updateOrder($id)
     {
         $order = Order::findOrFail($id);
         $orderItems = OrderItem::where("order_id", $order->id)->get();
 
-        return view('orders.update', compact('orderItems'));
+        return view('ordersadmin.update', compact('orderItems'));
     }
     public function editOrderStatus($id)
     {
