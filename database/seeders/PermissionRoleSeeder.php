@@ -46,7 +46,11 @@ class PermissionRoleSeeder extends Seeder
         (30, 1),
         (31, 1),
         (32, 1),
-        (33, 1);";
+        (33, 1),
+        (30, 3),
+        (31, 3),
+        (32, 3)
+        ;";
 
         DB::unprepared($query);
     }

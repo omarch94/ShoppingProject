@@ -57,7 +57,7 @@ class GuestController extends Controller
             }
             $total = number_format($total, 2);
         }
-        return view('pages.cart', compact('products', 'total'));
+        return view('pages.cartP', compact('products', 'total'));
     }
 
 
@@ -85,9 +85,10 @@ class GuestController extends Controller
                 }
             }
             $total = number_format($total, 2);
-            return view('pages.checkout', compact('products', 'total'));
+            // return view('auth.login', compact('products', 'total'));
+            return redirect('/login');
         }
-        return redirect('/cart');
+        // return redirect('/cart');
     }
 
     // public function about()

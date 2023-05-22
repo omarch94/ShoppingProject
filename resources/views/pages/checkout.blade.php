@@ -23,7 +23,7 @@
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
-                <form action="{{ route('checkout') }}" method="POST">
+                <form action="{{ route('makeOrder') }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-lg-8 col-md-6">

@@ -146,11 +146,12 @@ Route::controller(GuestController::class)->group(function () {
     Route::get('/searchProduct','searchProduct')->name(('search-product'));
     Route::get('/shop','shop')->name('shop');
     Route::get('/productDetail/{id}','productDetails');
-    Route::get('/cart', 'shopingCart');
+    Route::get('/cartP', 'shopingCart');
     Route::post('/add-to-cart', 'addProductToCart');
     Route::post('/empty-cart', 'emptyCart')->name('empty-cart');
     Route::put('/edit-cart/{id}','updateProductQuantityInCart')->name('edit-cart');
     Route::delete('/delete-from-cart/{id}', 'deleteProductFromCart')->name('delete-product-cart');
+    Route::get('/checkout','checkout');
 
 
 });
@@ -175,7 +176,7 @@ Route::delete('client/orderItem/{id}', 'cancelOrderItem')->name('client-orderIte
 
 Route::get('/order', [CustomerOrder::class, 'order'])->name('sendorder');
 // Route::post('/order','sendorder')->name('makeOrder');
-// Route::post('/checkout', [GuestController::class, 'checkout'])->name('checkout');
+Route::get('/checkout', [GuestController::class, 'checkout'])->name('checkout');
 
 
 
